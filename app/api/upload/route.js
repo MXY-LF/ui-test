@@ -21,7 +21,7 @@ export async function POST(request, res) {
             return NextResponse.json({ message: 'No files uploaded' }, { status: 400 });
         }
 
-        const assertDir = path.join('D:\\', 'testProject');
+        const assertDir = process.platform === 'linux' ? path.join('/', 'testProject') : path.join('D:\\', 'testProject');
 
         fs.mkdirSync(assertDir, { recursive: true }); // 确保目录存在
         const file = files[0];
