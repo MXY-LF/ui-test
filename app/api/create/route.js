@@ -68,8 +68,16 @@ function openTerminalWithCommand(command) {
     let terminal;
     let args;
 
-    terminal = 'cmd.exe';
-    args = ['/c', 'start', 'cmd', '/k', command];
+    if (process.platform === 'win32') {
+        terminal = 'cmd.exe';
+        args = ['/c', 'start', 'cmd', '/k', command];
+    } else if (process.platform === 'linux') {
+        terminal = 'gnome-terminal';
+        args = ['--', 'bash', '-c', command + '; exec bash'];
+    } else {
+        console.error('Unsupported platform');
+        return;
+    }
 
     try {
         const child = spawn(terminal, args, { shell: true });
