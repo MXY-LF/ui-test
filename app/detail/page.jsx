@@ -105,6 +105,19 @@ export default function Create() {
                   </div>
                 ))}
               </ImagePreview>
+              <div className='text-red-500 mb-4'>测试变更异常图片:</div>
+              <ImagePreview className='flex  gap-1  mb-4'>
+                {item.diffImgs?.map((img, index) => (
+                  <div >
+
+                    <Image
+                      width={120}
+                      height={100}
+                      src={img}
+                    />
+                  </div>
+                ))}
+              </ImagePreview>
               <Button onClick={() => changeValue(item.script)} className='mr-5'>脚本数据</Button>
               <Button onClick={() => changeModal(item.video)}>测试录屏</Button>
             </Card>
